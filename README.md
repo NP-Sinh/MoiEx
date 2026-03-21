@@ -8,9 +8,7 @@
 
   <!-- <h3 align="center">MoiEx App</h3> -->
 <p align="center">
-    <img alt="Node.js" src="https://img.shields.io/badge/Node.js-22.2-339933?logo=nodedotjs&logoColor=white">
-    <img alt="React Native" src="https://img.shields.io/badge/React_Native-61DAFB?logo=react&logoColor=black">
-    <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-61DAFB?logo=typescript&logoColor=black">
+    <img alt="Visual Studio" src="https://img.shields.io/badge/Visual%20Studio-2026-5C2D91?logo=visualstudio&logoColor=white">
     <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-61DAFB?logo=tailwindcss&logoColor=black">
 </p>
   <p align="center">
