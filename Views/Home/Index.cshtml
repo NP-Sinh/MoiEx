@@ -2,6 +2,192 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="rounded-2xl bg-white p-6 shadow-lg">
-    <h1 class="text-3xl font-bold text-red-500">Hello Tailwind</h1>
-</div>
+<!-- HERO -->
+<section class="hero-section">
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content container">
+        <h1 class="hero-title">
+            Empowering your<br>
+            <span class="hero-title-accent">productivity</span>
+        </h1>
+        <p class="hero-sub">
+            Experience the next generation of digital workspace tools. Fast,
+            intuitive, and designed to amplify your daily output.
+        </p>
+        <div class="hero-search">
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input type="text" placeholder="Find your next productivity booster..." class="hero-search-input" />
+            <button class="btn-primary">Explore</button>
+        </div>
+    </div>
+</section>
+
+<!-- POPULAR TOOLS -->
+<section class="tools-section container">
+    <div class="section-header">
+        <div>
+            <h2 class="section-title">Popular Tools</h2>
+            <p class="section-sub">The most used utilities by our 20k+ community</p>
+        </div>
+        <a href="#" class="view-all">
+            View Library
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </a>
+    </div>
+
+    <div class="tools-grid">
+        <!-- Smart Calendar — large card -->
+        <div class="tool-card tool-card-large">
+            <div class="tool-card-icon-area">
+                <div class="tool-icon-xl">
+                    <svg width="36" height="36" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"
+                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="tool-card-body">
+                <div class="tool-name-row">
+                    <span class="tool-icon-sm">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </span>
+                    <h3 class="tool-name">Smart Calendar</h3>
+                </div>
+                <p class="tool-desc">AI-driven scheduling that protects your deep work hours and streamlines meetings.</p>
+            </div>
+        </div>
+
+        <!-- Right column -->
+        <div class="tools-col">
+            <!-- Unit Converter -->
+            <div class="tool-card tool-card-small">
+                <a href="#" class="tool-ext-link">
+                    <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                </a>
+                <div class="tool-row">
+                    <span class="tool-icon-sm">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                        </svg>
+                    </span>
+                    <div>
+                        <h3 class="tool-name">Unit Converter</h3>
+                        <p class="tool-desc-sm">Instant multi-unit conversion.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Focus Timer -->
+            <div class="tool-card tool-card-small">
+                <a href="#" class="tool-ext-link">
+                    <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                </a>
+                <div class="tool-row">
+                    <span class="tool-icon-sm">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </span>
+                    <div>
+                        <h3 class="tool-name">Focus Timer</h3>
+                        <p class="tool-desc-sm">Customizable Pomodoro flows.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Smart Notepad -->
+            <div class="tool-card tool-card-small">
+                <a href="#" class="tool-chevron">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <div class="tool-row">
+                    <span class="tool-icon-sm">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                    </span>
+                    <div>
+                        <h3 class="tool-name">Smart Notepad</h3>
+                        <p class="tool-desc-sm">Markdown-ready collaborative notes with instant export.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+    <div class="container">
+        <h2 class="testi-title">Loved by creators worldwide</h2>
+        <div class="stars">
+            @for (int i = 0; i < 5; i++)
+            {
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" style="color:#facc15">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+            }
+        </div>
+        <div class="testi-grid">
+            <div class="testi-card">
+                <span class="testi-quote">"</span>
+                <p class="testi-text">MoiEx has completely transformed how I manage my freelance workflow. The timer and notepad integration is a game-changer.</p>
+                <div class="testi-author">
+                    <div class="testi-avatar" style="background:linear-gradient(135deg,#fb923c,#f43f5e)">A</div>
+                    <div>
+                        <div class="testi-name">Alex Chen</div>
+                        <div class="testi-role">Product Designer</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <span class="testi-quote">"</span>
+                <p class="testi-text">The search speed is incredible. I find exactly the tool I need in seconds. The UI is just beautiful to work in every day.</p>
+                <div class="testi-author">
+                    <div class="testi-avatar" style="background:linear-gradient(135deg,#a78bfa,#6366f1)">S</div>
+                    <div>
+                        <div class="testi-name">Sarah Jenkins</div>
+                        <div class="testi-role">Fullstack Developer</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <span class="testi-quote">"</span>
+                <p class="testi-text">I've tried every productivity suite out there. MoiEx is the first one that feels truly tailored to modern remote work.</p>
+                <div class="testi-author">
+                    <div class="testi-avatar" style="background:linear-gradient(135deg,#34d399,#059669)">M</div>
+                    <div>
+                        <div class="testi-name">Marcus Thorne</div>
+                        <div class="testi-role">Project Manager</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section container">
+    <div class="cta-box">
+        <h2 class="cta-title">Ready to boost your output?</h2>
+        <p class="cta-sub">Join thousands of professionals using MoiEx every day.</p>
+        <div class="cta-actions">
+            <button class="btn-primary btn-lg">Get Started Free</button>
+            <button class="btn-secondary btn-lg">Book a Demo</button>
+        </div>
+    </div>
+</section>
