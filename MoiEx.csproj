@@ -13,6 +13,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
+	  <PackageReference Include="SixLabors.ImageSharp.Web" Version="3.2.0" />
 	</ItemGroup>
 	<Target Name="Tailwind" BeforeTargets="Build;PrepareForPublish">
 		<Exec Command="npx @tailwindcss/cli -i ./wwwroot/css/site.css -o ./wwwroot/css/tailwind.css --minify" />

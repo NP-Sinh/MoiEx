@@ -2,7 +2,7 @@
 
 namespace MoiEx.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("moiex/[controller]")]
     public class CategoriesController : Controller
     {
         public IActionResult Index()

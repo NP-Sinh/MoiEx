@@ -1,0 +1,411 @@
+﻿@{
+    ViewData["Title"] = "Smart Image Compressor";
+    Layout = "_Layout";
+}
+
+<!-- Tool Page -->
+<section class="tool-page">
+    <div class="container">
+        <!-- Page Header -->
+        <div class="tool-header-row">
+            <div>
+                <h1 class="tool-page-title">Smart Image Compressor</h1>
+                <p class="tool-page-sub">Nén ảnh chất lượng cao — hỗ trợ JPG, PNG, WebP.</p>
+            </div>
+            <div class="tool-header-actions">
+                <button class="tool-action-btn tool-action-btn--primary">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
+                    Chia sẻ
+                </button>
+            </div>
+        </div>
+
+        <!-- 3-column layout -->
+        <div class="tool-layout">
+
+            <!-- LEFT: How to use -->
+            <aside class="tool-sidebar-left">
+                <div class="tool-info-card">
+                    <div class="tool-info-header">
+                        <svg width="15" height="15" fill="none" stroke="var(--clr-blue)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        Cách sử dụng
+                    </div>
+                    <ol class="tool-steps">
+                        <li>
+                            <span class="tool-step-num">1</span>
+                            <span>Kéo thả hoặc chọn ảnh (JPG, PNG, WebP) — tối đa 10 ảnh</span>
+                        </li>
+                        <li>
+                            <span class="tool-step-num">2</span>
+                            <span>Chọn định dạng đầu ra và mức chất lượng nén</span>
+                        </li>
+                        <li>
+                            <span class="tool-step-num">3</span>
+                            <span>Nhấn <strong>Nén ngay</strong> — tải về ảnh đơn hoặc file ZIP</span>
+                        </li>
+                    </ol>
+                    <div class="tool-pro-tip">
+                        <span class="tool-pro-badge">PRO TIP</span>
+                        <p>Dùng định dạng <strong>WebP</strong> để đạt tỉ lệ nén cao nhất mà vẫn giữ chất lượng hiển thị tốt trên trình duyệt hiện đại.</p>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="tool-stats-card">
+                    <div class="tool-stat">
+                        <span class="tool-stat-val" id="statCount">0</span>
+                        <span class="tool-stat-label">Ảnh đã chọn</span>
+                    </div>
+                    <div class="tool-stat-divider"></div>
+                    <div class="tool-stat">
+                        <span class="tool-stat-val" id="statSize">0 KB</span>
+                        <span class="tool-stat-label">Tổng kích thước</span>
+                    </div>
+                    <div class="tool-stat-divider"></div>
+                    <div class="tool-stat">
+                        <span class="tool-stat-val" id="statSaved">—</span>
+                        <span class="tool-stat-label">Đã tiết kiệm</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- CENTER: Drop Zone + File List -->
+            <div class="tool-workspace">
+                <!-- Drop Zone -->
+                <div class="tool-dropzone" id="dropzone">
+                    <div class="tool-dropzone-inner" id="dropzoneInner">
+                        <div class="tool-drop-icon">
+                            <svg width="40" height="40" fill="none" stroke="currentColor" viewBox="0 0 24 24" opacity=".45">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <p class="tool-drop-title">Thả ảnh vào đây</p>
+                        <p class="tool-drop-sub">Hỗ trợ JPG, PNG, WebP — tối đa 10 ảnh, mỗi ảnh ≤ 20 MB</p>
+                        <div class="tool-drop-btns">
+                            <button class="tool-action-btn tool-action-btn--primary" id="selectFilesBtn">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+                                Chọn ảnh
+                            </button>
+                        </div>
+                        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple hidden />
+                        <div class="tool-drop-badges">
+                            <span class="tool-drop-badge">
+                                <svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                                Mã hóa đầu cuối
+                            </span>
+                            <span class="tool-drop-badge">
+                                <svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                                Xử lý nhanh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File Preview List (hidden until files selected) -->
+                <div class="tool-file-list" id="fileList" style="display:none;">
+                    <div class="tool-file-list-header">
+                        <span class="tool-file-list-title" id="fileListTitle">0 ảnh đã chọn</span>
+                        <button class="tool-clear-btn" id="clearAllBtn">
+                            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                            Xóa tất cả
+                        </button>
+                    </div>
+                    <div class="tool-file-grid" id="fileGrid"></div>
+                    <button class="tool-add-more-btn" id="addMoreBtn">
+                        <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+                        Thêm ảnh
+                    </button>
+                </div>
+
+                <!-- Progress (hidden until compressing) -->
+                <div class="tool-progress-wrap" id="progressWrap" style="display:none;">
+                    <div class="tool-progress-label">
+                        <span id="progressText">Đang nén…</span>
+                        <span id="progressPct">0%</span>
+                    </div>
+                    <div class="tool-progress-bar">
+                        <div class="tool-progress-fill" id="progressFill" style="width:0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Settings -->
+            <aside class="tool-sidebar-right">
+                <div class="tool-settings-card">
+                    <div class="tool-settings-title">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                        Cài đặt nén
+                    </div>
+
+                    <!-- Output Format -->
+                    <div class="tool-setting-group">
+                        <label class="tool-setting-label">ĐỊNH DẠNG ĐẦU RA</label>
+                        <div class="tool-format-grid">
+                            <button class="tool-format-btn is-active" data-fmt="jpg">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                JPG
+                            </button>
+                            <button class="tool-format-btn" data-fmt="png">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                PNG
+                            </button>
+                            <button class="tool-format-btn" data-fmt="webp">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                                WebP
+                            </button>
+                            <button class="tool-format-btn" data-fmt="original">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                Gốc
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quality Slider -->
+                    <div class="tool-setting-group">
+                        <label class="tool-setting-label">
+                            CHẤT LƯỢNG
+                            <span class="tool-quality-val" id="qualityVal">80%</span>
+                        </label>
+                        <input type="range" class="tool-quality-slider" id="qualitySlider" min="10" max="100" value="80" step="5" />
+                        <div class="tool-quality-hints">
+                            <span>Nén mạnh</span>
+                            <span>Chất lượng cao</span>
+                        </div>
+                    </div>
+
+                    <!-- Toggles -->
+                    <div class="tool-setting-group">
+                        <label class="tool-setting-label">TÙY CHỌN</label>
+                        <div class="tool-toggle-row">
+                            <div class="tool-toggle-info">
+                                <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+                                <span>Giữ kích thước gốc</span>
+                            </div>
+                            <label class="tool-toggle">
+                                <input type="checkbox" id="keepSizeToggle" checked />
+                                <span class="tool-toggle-track"></span>
+                            </label>
+                        </div>
+                        <div class="tool-toggle-row">
+                            <div class="tool-toggle-info">
+                                <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
+                                <span>Xóa metadata EXIF</span>
+                            </div>
+                            <label class="tool-toggle">
+                                <input type="checkbox" id="stripExifToggle" checked />
+                                <span class="tool-toggle-track"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Compress Button -->
+                    <button class="tool-compress-btn" id="compressBtn" disabled>
+                        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                        Nén ngay
+                    </button>
+                    <p class="tool-compress-note">
+                        Bằng cách nén, bạn đồng ý với <a href="#">điều khoản xử lý</a> của chúng tôi.
+                    </p>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+</section>
+
+<script>
+        (function () {
+        const fileInput = document.getElementById('fileInput');
+        const selectBtn = document.getElementById('selectFilesBtn');
+        const addMoreBtn = document.getElementById('addMoreBtn');
+        const dropzone = document.getElementById('dropzone');
+        const fileList = document.getElementById('fileList');
+        const fileGrid = document.getElementById('fileGrid');
+        const fileListTitle = document.getElementById('fileListTitle');
+        const clearAllBtn = document.getElementById('clearAllBtn');
+        const compressBtn = document.getElementById('compressBtn');
+        const qualitySlider = document.getElementById('qualitySlider');
+        const qualityVal = document.getElementById('qualityVal');
+        const progressWrap = document.getElementById('progressWrap');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const progressPct = document.getElementById('progressPct');
+        const statCount = document.getElementById('statCount');
+        const statSize = document.getElementById('statSize');
+        const statSaved = document.getElementById('statSaved');
+        const formatBtns = document.querySelectorAll('.tool-format-btn');
+
+        const MAX_FILES = 10;
+        let files = [];
+        let selectedFormat = 'jpg';
+
+        // ---- Format selector ----
+        formatBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                formatBtns.forEach(b => b.classList.remove('is-active'));
+                btn.classList.add('is-active');
+                selectedFormat = btn.dataset.fmt;
+            });
+        });
+
+        // ---- Quality slider ----
+        qualitySlider.addEventListener('input', () => {
+            qualityVal.textContent = qualitySlider.value + '%';
+        });
+
+        // ---- File picking ----
+        selectBtn.addEventListener('click', () => fileInput.click());
+        addMoreBtn.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', () => addFiles(fileInput.files));
+
+        // ---- Drag & drop ----
+        ['dragenter', 'dragover'].forEach(ev => dropzone.addEventListener(ev, e => { e.preventDefault(); dropzone.classList.add('drag-over'); }));
+        ['dragleave', 'drop'].forEach(ev => dropzone.addEventListener(ev, e => { e.preventDefault(); dropzone.classList.remove('drag-over'); }));
+        dropzone.addEventListener('drop', e => addFiles(e.dataTransfer.files));
+
+        function addFiles(newFiles) {
+            const allowed = ['image/jpeg', 'image/png', 'image/webp'];
+            const arr = Array.from(newFiles).filter(f => allowed.includes(f.type));
+            const remaining = MAX_FILES - files.length;
+            if (remaining <= 0) { alert('Đã đạt giới hạn 10 ảnh.'); return; }
+            arr.slice(0, remaining).forEach(f => files.push(f));
+            renderFileList();
+            fileInput.value = '';
+        }
+
+        function renderFileList() {
+            fileGrid.innerHTML = '';
+            files.forEach((f, idx) => {
+                const url = URL.createObjectURL(f);
+                const item = document.createElement('div');
+                item.className = 'tool-file-item';
+                item.innerHTML = `
+                    <img class="tool-file-thumb" src="${url}" alt="${f.name}" />
+                    <div class="tool-file-overlay">
+                        <span class="tool-file-name">${f.name}</span>
+                        <span class="tool-file-size">${fmtSize(f.size)}</span>
+                    </div>
+                    <button class="tool-file-remove" data-idx="${idx}" title="Xóa ảnh">
+                        <svg width="9" height="9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>`;
+                fileGrid.appendChild(item);
+            });
+
+            // Remove handlers
+            fileGrid.querySelectorAll('.tool-file-remove').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    files.splice(parseInt(btn.dataset.idx), 1);
+                    renderFileList();
+                });
+            });
+
+            const visible = files.length > 0;
+            dropzone.style.display = visible ? 'none' : 'flex';
+            fileList.style.display = visible ? 'block' : 'none';
+            fileListTitle.textContent = `${files.length} ảnh đã chọn`;
+            compressBtn.disabled = files.length === 0;
+
+            // Stats
+            const totalBytes = files.reduce((s, f) => s + f.size, 0);
+            statCount.textContent = files.length;
+            statSize.textContent = fmtSize(totalBytes);
+            statSaved.textContent = '—';
+
+            if (files.length === 0) {
+                dropzone.style.display = 'flex';
+                fileList.style.display = 'none';
+            }
+        }
+
+        clearAllBtn.addEventListener('click', () => { files = []; renderFileList(); });
+
+        // ---- Compress ----
+        compressBtn.addEventListener('click', async () => {
+            if (files.length === 0) return;
+            const quality = parseInt(qualitySlider.value);
+            const format = selectedFormat;
+            const keepSize = document.getElementById('keepSizeToggle').checked;
+            const stripExif = document.getElementById('stripExifToggle').checked;
+
+            compressBtn.disabled = true;
+            compressBtn.innerHTML = '<span class="btn-spinner"></span> Đang nén…';
+            progressWrap.style.display = 'block';
+
+            const formData = new FormData();
+            files.forEach(f => formData.append('images', f));
+            formData.append('quality', quality);
+            formData.append('outputFormat', format);
+            formData.append('keepOriginalSize', keepSize);
+            formData.append('stripExif', stripExif);
+
+            try {
+                // Fake progress animation
+                let pct = 0;
+                const ticker = setInterval(() => {
+                    pct = Math.min(pct + Math.random() * 12, 88);
+                    updateProgress(pct, 'Đang nén…');
+                }, 200);
+
+                const res = await fetch('/moiex/ImageCompression/compress', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                clearInterval(ticker);
+
+                if (!res.ok) throw new Error(await res.text());
+
+                updateProgress(100, 'Hoàn tất!');
+
+                const contentDisp = res.headers.get('Content-Disposition') || '';
+                const fileName = contentDisp.match(/filename="?([^";]+)"?/)?.[1]
+                    || (files.length > 1 ? 'compressed_images.zip' : `compressed.${format === 'original' ? files[0].name.split('.').pop() : format}`);
+
+                const blob = await res.blob();
+                const origSize = files.reduce((s, f) => s + f.size, 0);
+                const newSize = blob.size;
+                const saved = origSize - newSize;
+                const savedPct = Math.max(0, Math.round(saved / origSize * 100));
+                statSaved.textContent = savedPct > 0 ? `-${savedPct}% (${fmtSize(saved)})` : 'Không thay đổi';
+
+                // Mark items as done
+                fileGrid.querySelectorAll('.tool-file-item').forEach(item => {
+                    if (!item.querySelector('.tool-file-result')) {
+                        const badge = document.createElement('div');
+                        badge.className = 'tool-file-result';
+                        badge.textContent = '✓';
+                        item.appendChild(badge);
+                    }
+                });
+
+                // Download
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = fileName;
+                a.click();
+                URL.revokeObjectURL(a.href);
+
+            } catch (err) {
+                updateProgress(0, 'Lỗi: ' + err.message);
+                alert('Nén thất bại: ' + err.message);
+            } finally {
+                setTimeout(() => { progressWrap.style.display = 'none'; }, 2000);
+                compressBtn.disabled = false;
+                compressBtn.innerHTML = `<svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg> Nén ngay`;
+            }
+        });
+
+        function updateProgress(pct, text) {
+            const p = Math.round(pct);
+            progressFill.style.width = p + '%';
+            progressPct.textContent = p + '%';
+            progressText.textContent = text;
+        }
+
+        function fmtSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / 1024 / 1024).toFixed(2) + ' MB';
+        }
+    })();
+    </script>

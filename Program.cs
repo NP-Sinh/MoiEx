@@ -1,7 +1,10 @@
+using MoiEx.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IImageCompressionService, ImageCompressionService>();
 
 var app = builder.Build();
 

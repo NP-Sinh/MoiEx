@@ -20,6 +20,7 @@
   "homepage": "https://github.com/NP-Sinh/MoiEx#readme",
   "devDependencies": {
     "@tailwindcss/cli": "^4.2.2",
+    "eslint": "^10.1.0",
     "tailwindcss": "^4.2.2"
   }
 }
