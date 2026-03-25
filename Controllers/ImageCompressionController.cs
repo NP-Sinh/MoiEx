@@ -24,7 +24,7 @@ namespace MoiEx.Controllers
             return View();
         }
         [HttpPost("compress")]
-        [RequestSizeLimit(200 * 1024 * 1024)] // 200 MB total
+        [RequestSizeLimit(200 * 1024 * 1024)] // 200 MB
         public async Task<IActionResult> Compress(
             [FromForm] List<IFormFile> images,
             [FromForm] int quality = 80,
@@ -32,7 +32,7 @@ namespace MoiEx.Controllers
             [FromForm] bool keepOriginalSize = true,
             [FromForm] bool stripExif = true)
         {
-            // Validation
+
             if (images == null || images.Count == 0)
                 return BadRequest("Vui lòng tải lên ít nhất 1 ảnh.");
 
@@ -72,8 +72,6 @@ namespace MoiEx.Controllers
             // Multiple images → ZIP 
             var imageStreams = images.Select(f =>
             {
-                // Streams opened here; they are read inside CompressToZipAsync.
-                // We open them lazily via a local projection so we can dispose after.
                 return (Stream: f.OpenReadStream(), FileName: f.FileName);
             }).ToList();
 

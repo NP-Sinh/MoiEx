@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IImageCompressionService, ImageCompressionService>();
+builder.Services.AddScoped<IPdfConverterServices, PdfConverterServices>();
 
 var app = builder.Build();
 

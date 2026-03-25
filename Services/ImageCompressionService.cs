@@ -9,9 +9,7 @@ namespace MoiEx.Services
 {
     public interface IImageCompressionService
     {
-        // Nén một ảnh và trả về byte[] cùng tên file đầu ra.
         Task<(byte[] Data, string FileName)> CompressSingleAsync( Stream inputStream, string originalFileName, CompressionOptions options);
-        // Nén nhiều ảnh và đóng gói vào file ZIP.
         Task<byte[]> CompressToZipAsync( IEnumerable<(Stream Stream, string FileName)> images, CompressionOptions options);
 
     }
